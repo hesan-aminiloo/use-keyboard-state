@@ -1,16 +1,15 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-type WindowSizes = number[];
 
 const useKeyboardOpen = () => {
-  const initialWindow = useRef<WindowSizes>([]);
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState<boolean>(false);
-  const [keyboardHeight, setKeyboardHeight] = useState<number>(0);
+  const initialWindow = useRef([]);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
 
   // couldn't figure out what's the type of this event. Maybe you know it?
-  const viewportHandler = (e: any) => {
+  const viewportHandler = (e) => {
     const { height, width, scale } = e.currentTarget;
-    if (document.activeElement instanceof HTMLElement && document.activeElement.nodeName !== 'INPUT') {
+    if (document.activeElement.nodeName !== 'INPUT') {
       if (isKeyboardOpen) setIsKeyboardOpen(false);
       if (keyboardHeight) setKeyboardHeight(0);
     }
@@ -21,7 +20,7 @@ const useKeyboardOpen = () => {
       height < initialWindow.current[0]
       || width < initialWindow.current[1]
     ) {
-      if (document.activeElement instanceof HTMLElement && document.activeElement.nodeName === 'INPUT') {
+      if (document.activeElement.nodeName === 'INPUT') {
         setIsKeyboardOpen(true);
         setKeyboardHeight((height - initialWindow.current[0]) * scale);
       }
