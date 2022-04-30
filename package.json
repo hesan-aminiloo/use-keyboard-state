@@ -1,6 +1,6 @@
 {
   "name": "use-keyboard-state",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Check whether the virtual keyboard is open or not",
   "repository": "https://github.com/hesan-aminiloo/use-keyboard-state.git",
   "author": "Hesan Aminiloo <hesan.aminiloo@gmail.com>",
